@@ -41,3 +41,15 @@ bool Cell::isPossible(int number) {
 bool Cell::Baned() {
 	return isBaned;
 }
+
+bool Cell::isDetermined() {
+	int numberOfPossibleValues = 0;
+	for (int i = 0; i < 9; ++i) {
+		if (Mas[i] == 1)
+			numberOfPossibleValues++;
+	}
+	if (numberOfPossibleValues == 1)
+		return true;
+	else
+		return false;
+}

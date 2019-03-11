@@ -13,4 +13,5 @@ public:
 	int* getValue();//Returns value of Mas
 	bool isPossible(int number);//Returns True if this number is possible in the cell
 	bool Baned();//True if the cell is baned
+	bool isDetermined();//Check if there is only one possible number in the cell
 };

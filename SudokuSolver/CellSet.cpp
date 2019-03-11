@@ -18,7 +18,7 @@ bool arraysEqual(int* Array1, int* Array2, int Dimension) {
 	return arrayEquality;
 }
 
-CellSet::CellSet(Cell* a, Cell* b, Cell* c, Cell* d, Cell* e, Cell* f, Cell* g, Cell* h, Cell* i) {
+ /*CellSet::CellSet(Cell* a, Cell* b, Cell* c, Cell* d, Cell* e, Cell* f, Cell* g, Cell* h, Cell* i) {
 	CellList = new Cell*[9];
 	CellList[0] = a;
 	CellList[1] = b;
@@ -29,11 +29,11 @@ CellSet::CellSet(Cell* a, Cell* b, Cell* c, Cell* d, Cell* e, Cell* f, Cell* g, 
 	CellList[6] = g;
 	CellList[7] = h;
 	CellList[8] = i;
-}
+}*/
 
-CellSet::~CellSet() {
+/*CellSet::~CellSet() {
 	delete[] CellList;
-}
+}*/
 
 void CellSet::deleteDeterminedValue(int value) {
 	for (int i = 0; i < 9; ++i)
@@ -43,9 +43,10 @@ void CellSet::deleteDeterminedValue(int value) {
 void CellSet::deleteEqualValuesNumber() {
 	for (int i = 0; i < 8; ++i) {//Checking all the cells(not including the group consisting of 1 cell)
 		int counterOfCells = 1;
+		int* transitionalArray;
 		int* upperTransitionalArray = CellList[i]->getValue();//Array that containts numbers looked for in a cell group; transitionalArray compares to it
 		for (int j = i + 1; j < 9; ++j) {//Checking all the other cells
-			int* transitionalArray = CellList[j]->getValue();//Array containing 1s and 0s of a particular cell
+			transitionalArray = CellList[j]->getValue();//Array containing 1s and 0s of a particular cell
 			if (arraysEqual(upperTransitionalArray, transitionalArray, 9)) {
 				counterOfCells++;//Finding the number of equal cells
 			}
@@ -60,5 +61,7 @@ void CellSet::deleteEqualValuesNumber() {
 				}
 			}
 		}
+		delete[] transitionalArray;
+		delete[] upperTransitionalArray;
 	}
 }

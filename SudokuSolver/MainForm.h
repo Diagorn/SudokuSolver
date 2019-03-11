@@ -1,5 +1,8 @@
 #pragma once
 #include "Sudoku.h"
+#include "Row.h"
+#include "Column.h"
+#include "Square.h"
 namespace SudokuSolver {
 
 	using namespace System;
@@ -173,17 +176,19 @@ namespace SudokuSolver {
 		
 	}
 	private: System::Void SudokuFrame_CellEndEdit(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
-		/*	//Check if the selected cell value is OK
+			//Check if the selected cell value is OK
 		bool OkStatus = false;
 		for (int i = 1; i < 10; ++i) {
-			if (SudokuFrame->Rows[e->RowIndex]->Cells[e->ColumnIndex]->Value == System::Convert::ToString(i))
-				OkStatus = true;
+			if (System::Convert::ToString(SudokuFrame->Rows[e->RowIndex]->Cells[e->ColumnIndex]->Value) == System::Convert::ToString(i)) {
+					OkStatus = true;
+					break;
+				}
 		}
 		if (!OkStatus) {
 			MessageBox::Show("Вы ввели неверное значение!");
 			SudokuFrame[e->ColumnIndex, e->RowIndex]->Value = "";
 		}
-	*/
+	
 	}
 private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^  e) {
 	Sudoku* main = new Sudoku();
@@ -193,6 +198,74 @@ private: System::Void btnSolve_Click(System::Object^  sender, System::EventArgs^
 				main->fill(i, j, System::Convert::ToInt16(SudokuFrame[i, j]->Value));
 		}
 	}
+	Row* firstRow = new Row(0, main);
+	Row* secondRow = new Row(1, main);
+	Row* thirdRow = new Row(2, main);
+	Row* fourthRow = new Row(3, main);
+	Row* fifthRow = new Row(4, main);
+	Row* sixthRow = new Row(5, main);
+	Row* seventhRow = new Row(6, main);
+	Row* eighthRow = new Row(7, main);
+	Row* ninethRow = new Row(8, main);
+	//All rows are created
+	Column* firstColumn = new Column(0, main);
+	Column* secondColumn = new Column(1, main);
+	Column* thirdColumn = new Column(2, main);
+	Column* fourthColumn = new Column(3, main);
+	Column* fifthColumn = new Column(4, main);
+	Column* sixthColumn = new Column(5, main);
+	Column* seventhColumn = new Column(6, main);
+	Column* eighthColumn = new Column(7, main);
+	Column* ninethColumn = new Column(8, main);
+	//All columns are created
+	Square* firstSquare = new Square(0, 0, main);
+	Square* secondSquare = new Square(0, 3, main);
+	Square* thirdSquare = new Square(0, 6, main);
+	Square* fourthSquare = new Square(3, 0, main);
+	Square* fifthSquare = new Square(3, 3, main);
+	Square* sixthSquare = new Square(3, 6, main);
+	Square* seventhSquare = new Square(6, 0, main);
+	Square* eighthSquare = new Square(6, 3, main);
+	Square* ninethSquare = new Square(6, 6, main);
+	//All squares are created
+	//Beginning of the main algorythm
+	while (!main->isSolved) {
+		for (int i = 0; i < 9; ++i) {
+			//Дописать и понять, что использовать - vector или list или простой массив
+		}
+	}
+	
+	main->~Sudoku(); //Sudoku deleted
+	firstRow->~Row();
+	secondRow->~Row();
+	thirdRow->~Row();
+	fourthRow->~Row();
+	fifthRow->~Row();
+	sixthRow->~Row();
+	seventhRow->~Row();
+	eighthRow->~Row();
+	ninethRow->~Row();
+	//All Rows deleted
+	firstColumn->~Column();
+	secondColumn->~Column();
+	thirdColumn->~Column();
+	fourthColumn->~Column();
+	fifthColumn->~Column();
+	sixthColumn->~Column();
+	seventhColumn->~Column();
+	eighthColumn->~Column();
+	ninethColumn->~Column();
+	//All Columns deleted
+	firstSquare->~Square();
+	secondSquare->~Square();
+	thirdSquare->~Square();
+	fourthSquare->~Square();
+	fifthSquare->~Square();
+	sixthSquare->~Square();
+	seventhSquare->~Square();
+	eighthSquare->~Square();
+	ninethSquare->~Square();
+	//All Squares deleted
 }
 };
 }

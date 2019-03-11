@@ -10,6 +10,14 @@ Sudoku::Sudoku() {//Building a 9x9x9 array
 	}
 }
 
+Sudoku::Sudoku(Sudoku& a) {
+	for (int i = 0; i < 9; ++i) {
+		for (int j = 0; j < 9; ++j) {
+			this->Matrix[i][j] = a.getCellAtIndex(i, j);
+		}
+	}
+}
+
 Sudoku::~Sudoku() {//Just freeing the memory
 	for (int i = 0; i < 9; ++i) {
 		for (int j = 0; j < 9; ++j) {
@@ -29,4 +37,18 @@ void Sudoku::fill(int i, int j, int value) {//If any number is possible in the C
 
 int* Sudoku::getElement(int i, int j) {
 	return Matrix[i][j]->getValue();
+}
+
+Cell* Sudoku::getCellAtIndex(int i, int j) {
+	return Matrix[i][j];
+}
+
+bool Sudoku::isSolved() {
+	for (int i = 0; i < 9; ++i) {
+		for (int j = 0; j < 9; ++j) {
+			if (!Matrix[i][j]->isDetermined())
+				return false;
+		}
+	}
+	return true;
 }
